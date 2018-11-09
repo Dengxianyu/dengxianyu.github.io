@@ -1,0 +1,4 @@
+## 邓先雨的[个人博客](https://dengxianyu.github.io/)，读书的生活的随笔
+- 博客采用Hexo+BlueLake主题搭建，在此基础上修改了一些样式和内容，感谢这些资源的贡献者
+- 博客多半会是前端路上的探索随笔，更多的是为自己以后的温故，但同时也希望这些文章对大家也有帮助
+- 主要配置参考[BlueLake博客主题的详细配置](http://chaoo.oschina.io/2016/12/29/BlueLake%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E7%9A%84%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE.html)

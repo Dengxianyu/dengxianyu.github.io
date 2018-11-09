@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="邓先雨的三味书屋"><meta name="keywords" content="博客, 前端, 生活"><title>css基础知识 | 零落之角</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">css基础知识</h1><a id="logo" href="/.">零落之角</a><p class="description">人生虽不快乐，而仍能乐观</p></div><div id="nav-menu"><a href="/./"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="关键字"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">css基础知识</h1><div class="post-meta"><a href="/2018/08/23/css基础知识/#comments" class="comment-count"></a><p><span class="date">2018-08-23</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>《css 权威指南》是一本 2007 年出版的书，距今 11 年了，但是对于前端学习过时了吗？答案可能是没有，因为本书介绍的 css2.1 及之前的一些特性其实占据了平时写 css 的绝大部分，而 css 也是 web 前端开发很重要的一部分。第二次读希望整理出一份平时工作中疑惑、遗漏的重要的知识点。</p>
+<h2 id="0-html-元素的认识"><a class="markdownIt-Anchor" href="#0-html-元素的认识"></a> 0. HTML 元素的认识</h2>
+<p>最早期没有 CSS 的时候，HTML 试图用各种元素以及元素本身的内置属性和一些属性来控制其展示形式，当然我们知道最后很失败，那些如 center 元素的都已经为历史摈弃，推出了样式和元素分离，css 由此而生。但是 css 也是在元素的基础上工作的，所以元素本身的一些固有属性还是有所依赖的。</p>
+<ul>
+<li>元素的分类：这对于一些 css 的属性作用在这些不同的元素上是不同的，有的是失效的（text-align 只能影响块级元素内部的文本水平对齐方式，对于非块级元素不起作用），有的会产生不一样的效果。
+<ol>
+<li>块级元素：浏览器默认给其 display:block，会在其元素框前后生成分隔框以让自身可以单独占用一行，如<code>&lt;div&gt;、 &lt;p&gt;、&lt;ul&gt;</code>；</li>
+<li>行内元素：浏览器默认给其 display:inline，不会对其前后的元素形成分隔框，设置其 width 和 height 属性将无效，其内容完全依赖其内文本内容支撑的，如<code>&lt;span&gt;、&lt;a&gt;、&lt;label&gt;</code>；</li>
+<li>替换元素：浏览器默认给其 display:inline-block，和行内元素一样不会产生分隔框，但是其内容并非有文档内容产生，而是根据其他条件，如 img 元素内容由 src 的图片生成内容，input 元素的内容由其 type 属性决定生成不同的表单；</li>
+<li>非替换元素：顾名思义，不是替换元素的元素。</li>
+</ol>
+</li>
+</ul>
+<h2 id="1-css-如何作用于网页"><a class="markdownIt-Anchor" href="#1-css-如何作用于网页"></a> 1. css 如何作用于网页</h2>
+<ul>
+<li>
+<p>加载 css 的三种方式:外部样式表、内部样式表、内联样式（又称行内样式）。</p>
+<ol>
+<li>外部样式表：<br>
+<code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;sheet1.css&quot; media=&quot;all&quot; /&gt;</code></li>
+<li>内部样式表：<code>&lt;style type=&quot;text/css&quot;&gt;&lt;/style&gt;</code></li>
+<li>内联样式：<code>&lt;p style=&quot;color: gray; font-size: 16px;&quot;&gt;test&lt;/p&gt;</code></li>
+</ol>
+</li>
+<li>
+<p>@import 指令导入外部样式表：<code>@import url(http://qq.com/lib/css/test.css)</code>这种绝对地址和<code>@import url(../assets/style/test.css)</code>相对地址都是支持的，且@import 指令可以出现在外部样式表和内部样式表，但都必须放在要先于除了@charset 的其他任何 CSS 规则，否则不生效</p>
+</li>
+<li>
+<p>@import 和 link 标签引入外部样式表有什么区别?</p>
+<ol>
+<li>link 标签无兼容性问题，@import 是 css2.1 提出的；</li>
+<li>不推荐以@import 引入外部样式的原因在于：<br>
+a. @import 引入的外部样式文件会是网页解析完和开始其他下载之后的最后处理的下载请求，而且在同时有 link 和 style 标签中的@import 存在时会在 IE 下破坏并行下载;<br>
+b. link 混合@import 会破坏并行下载，这是一个很严重的问题，这会导致原本并行下载的样式变成一个一个的同步下载。<br>
+基于上面两点，@import 很容易导致破坏并行下载，所以可能让页面加载和渲染完成时间增长，容易造成页面闪烁（样式后面生效造成的页面突变）</li>
+</ol>
+</li>
+<li>
+<p>href 和 src 的区别，以及引申出来前端的优化策略…</p>
+<ol>
+<li>href（Hypertext Reference 的简写）用于建立当前元素和文档之间的链接，应用有 link、a 标签。如 link 标签的加载让浏览器明白当前资源是一个样式表，页面解析不会暂停（当文件下载完成时会在下一帧渲染新的样式规则）。</li>
+<li>src（source 的简写）是嵌入当前资源到当前文档元素定义的位置，应用有 img、script、iframe。如加载到 script 标签（在没有 defer、async 修饰属性时）会让浏览器通过 src 去下载外部样式，期间浏览器 block 住不会解析标签后的其他元素，直到下载完成并解析完成 js 文件，才会继续下一步的解析，所以我们需要把不重要的 js 的 script 标签尽量放置后面，加快首次访问加载和渲染速度。但 img 元素不会阻止到文档的解析。</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-css-选择器以及作用规则"><a class="markdownIt-Anchor" href="#2-css-选择器以及作用规则"></a> 2. css 选择器以及作用规则</h2>
+<p>css 的各种类型选择器众多，但是是否应用恰当真的很关键，有的时候写的好的 css 样式表对于后续的维护和修改至关重要。</p>
+<ul>
+<li>通配符：_表示任意元素，单独应用不多，因为通配符对于后续整个文档结构都加了一个默认样式，和耗费性能。举例<code>_ { margin: 0; padding: 0 }</code></li>
+<li>元素名选择器：直接以元素名称来选择。举例<code>label { color: blue; }</code></li>
+<li>class 选择器：需要在 class 名称前加 . 。举例<code>.red { background-color: red; }</code></li>
+<li>id 选择器：需要在 id 名前加 # 。举例<code>#main { width: 100%; }</code></li>
+<li>属性选择器：以[]中写属性名来选择某一类，其分为 6 种：没有=号，表示所有拥有此属性即可的；=号表示属性值全匹配；~=表示属性值中以空格来分可以匹配到某个值；^=表示属性值以某个值开头；$=表示属性值以某个值结尾；*=表示属性值包含某个值即可。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line">*<span class="selector-attr">[disabled]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: gray;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* =必须全匹配 */</span></span><br><span class="line">*<span class="selector-attr">[title="test css selector"]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* ~=必须匹配其某个单词 */</span></span><br><span class="line">*<span class="selector-attr">[title="css"]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* ^=匹配开头，不限是否为单词 */</span></span><br><span class="line">*<span class="selector-attr">[title^="te"]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* $=匹配结尾，不限是否为单词 */</span></span><br><span class="line">*<span class="selector-attr">[title$="tor"]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* *=匹配任意存在的 */</span></span><br><span class="line">*<span class="selector-attr">[title="ss s"]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"不可编辑"</span> <span class="attr">disabled</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">title</span>=<span class="string">"test css selector"</span>&gt;</span>test css selector<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>后代选择器：以空格连接，如<code>body p { color: blue; }</code></li>
+<li>子元素选择器：以&gt;连接，如<code>body&gt;main { width: 100% }</code></li>
+<li>相邻兄弟选择器：以+连接，只能是相邻的兄弟，如<code>li+li { font-weight: bold; }</code>不能匹配到第一项列表</li>
+<li>伪类：可以看做是为该元素加了一个特定的类，这个类生效是需要一些条件的。已有的伪类有：<code>:link(未被访问的链接)、:visited(已经被访问的链接)、:hover(元素被悬浮时)、:active(用户激活该元素时，最常用在a标签被点击时)、:focus(表单元素获取到输入焦点时)、:first-child(作为其父类的第一个元素时)、:lang(某种语言匹配到时，如*lang(fr) {font-style: italic;})</code>。伪类可以多个同时组合，如<code>a:link:hover和a:visited:hover</code></li>
+<li>伪元素：可以看做是插入到文档中的元素，已有的伪元素有：<code>:first-letter(设置某个块级元素首字母的样式)、first-line(设置某个块级元素首行的样式)、before(设置某个元素前面的内容)、after(设置某个元素后面的内容)</code>。伪元素必须放在选择器的最后面，如写成<code>p:first-line em</code>就是不合法的。</li>
+<li>特殊性：多个样式规则同时作用于同一个元素时，元素选择了哪个规则就是根据不同的样式规则有不同的特殊性，有最高特殊性的股则会胜出。
+<ol>
+<li>内联样式的特殊性为 1,0,0,0，id 选择器的特殊性为 0,1,0,0，class 选择器、属性选择器和伪类的特殊性为 0,0,1,0，元素选择器和伪元素选择器为 0,0,0,1，结合符和通配符对特殊性没有贡献。一个选择器最终的特殊性是每个选择器特殊性之和。</li>
+<li>!important：只能出现在样式规则的最后面，前面有无空格都可以，一般有空格更为标准。它表征该条样式规则会有单独的分组，大于其他任何没有!important 的声明，但是如果也存在其他！important 的声明作用，则二者再按照特殊性规则比较。</li>
+<li>浏览器规则和继承：浏览器有一些自己的规则，如把 a 链接都渲染成蓝色；同样 css 的 color、一些字体属性、还有一些文本属性都是默认继承父元素的。实际上，通配符&gt;浏览器规则&gt;继承</li>
+<li>特殊性在比较的时候，遵循一个规则：不存在进位。即假如出现 11 个类选择器，那么其特殊性为 0,0,11,0，不会超过一个一个 id 选择器 0,1,0,0。且存在相同的特殊性时，会遵循每个规则的先后顺序，后续的规则会覆盖前面的规则。</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-字体属性和文本属性"><a class="markdownIt-Anchor" href="#3-字体属性和文本属性"></a> 3. 字体属性和文本属性</h2>
+<ul>
+<li>em 和 px：px 是绝对单位，而 em 是相对单位，会相对当前元素的 font-size 的值而计算出来。如某元素 font-size 是 16px，设置其 padding 为 1.5em，则实际上其 padding 为 24px。</li>
+<li>font-family: 可以用逗号分隔指定多个字体的值，前面的字体若浏览器不支持则从会依次找后面的字体，直到最后一个字体。当字体名称中包含空格、#、$这些特殊字符时需要用引号（一般用单引号）引入。<code>p { font-family: Times, 'New York', serif; }</code></li>
+<li>font-weight: 初始值是 normal，还可以取 bold、light、bolder、lighter、inherit、100-900。normal、light 和 bold 都是绝对值，而 bolder、lighter 是相对于其父元素 font-weight 的相对值，在其值上 ±200。但是最终浏览器显示情况又和字体息息相关，若该字体本身没有粗体或细体，则所有的粗体或细体仍和正常字体一样。</li>
+<li>font-size: 若其设置值单位为 em，则是相对其父元素的 font-size，和百分数等价。如设置某元素 font-size 为 1.5em，其父元素 font-size 为 14px，则其 font-size 为 21px，等价于设置值为 150%。若此时设置该元素的 line-height 为 1em，也是 21px 而非 14px。</li>
+<li>font-style: 可以取值 italic/oblique/normal/inherit。italic 表示斜体，oblique 表示倾斜的，其实有的字体下二者一样的。</li>
+<li>font-variant: 可以取值 small-caps/normal/inherit。small-caps 表示小型大写字母，会将 test 变成 TEST，但是 TEST 所占的都是小写字母所占的体积，可以自己去试一下。</li>
+<li>font: 它是一个合并属性，[&lt;font-style&gt;][&lt;font-variant&gt;] [&lt;font-weight&gt;] &lt;font-size&gt;[/&lt;line-height&gt;] &lt;font-famliy&gt;，可以看出前三个可以采用任意的顺序也可以省略，但是后面两个值 font-size 和 font-family 是必须要的，当然 line-height 也是可选的。特别注意的所有的省略项目都是 normal，这和只定义 font-size 和 font-family 时其他项默认是继承父元素的值有区别。也就是说<code>font: 16px sans-serif; 等价于 font: normal normal normal 16px/normal sans-serif;</code></li>
+<li>text-indent: 只能用于 display 设置为 block 和 inline-block 的元素，用于设置其内文本的首行缩进值。</li>
+<li>text-align: 只能用于 display 设置为 block 和 inline-block 的元素，用于设置其内文本的水平排版方式。</li>
+<li>line-height: 指文本行<strong>基线</strong>之间的距离，可以应用到所有元素，但是对于替换元素不生效(但是由于vertical-align的百分数是相对于line-height的值，所以还是有作用的)。文本行中的每个元素会生成一个内容区，内容区会生成一个行内框(inline-box)，行内框有四条线，如最初学习英文时的英文本的四条线，分别叫顶/中/基/底 线（top/middle/base/bottom line），默认情况下字体都是以基线为标准对齐的，底线会有 g、j 这些字母触及。line-height 控制着多行之间的垂直间隔，指出每一行的实际距离。如设置 font-size 为 16px，则底线与顶线之间的距离是 16px，但是浏览器一般会有个默认的 line-height 值为 normal，具体多少和浏览器有关系，如 Chrome 为 21px，这表示 inline-box 上下边距为 2.5px。它作用于块级元素和行内元素时是不一样的。对于行内元素，由于本身内容就是由里面的文本内容撑开的，所以若逐渐设置的 line-height 开始大于浏览器设置的 normal 的值时，才会起到效果。但是对于块级元素(inline-block)同理，设置为非负数都会有效果，设置为 0 会让每一行的字得到重叠。line-height 可以设置纯数字，如 2，表示双倍行距，和 2em 的计算值一样，但是区别在于遗传给子元素时，2 会自动遗传给子元素而 2em 会以其计算值遗传。</li>
+<li>vertical-align: 只能用于 display 设置为 block 和 inline-block 的元素，用于设置一个元素在垂直方向其基线 baseline 与父元素的哪个线垂直，如其默认值为 baseline，表示与父元素的 baseline 垂直。若该元素没有基线，如 img 或者 input 元素，则是该元素的底端和其父元素的 baseline 垂直。其可以取值 baseline/sub/super/top/text-top/middle/bottom/text-bottom/&lt;length&gt;。没有继承性！</li>
+<li>word-spacing/letter-spacing: 应用所有元素，单词之间的间隔/字母之间的间隔，可以应用于所有元素。默认值为 normal，相当于长度单位 0。</li>
+<li>text-transform: 设置文本大小写的一些方式，应用所有元素，可取值 uppercase/lowercase/capitalize(每个单词首字母大写)/none(初始值，不作任何处理)/inherit，</li>
+<li>text-decoration: none/underline/overline/line-through/blink，没有继承性，所以子元素的</li>
+<li>white-space: 应用于所有元素，控制文本中的空白符和换行符。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">值</th>
+<th style="text-align:center">空白符</th>
+<th style="text-align:center">换行符</th>
+<th style="text-align:center">自动换行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">normal</td>
+<td style="text-align:center">合并</td>
+<td style="text-align:center">忽略</td>
+<td style="text-align:center">允许</td>
+</tr>
+<tr>
+<td style="text-align:center">nowrap</td>
+<td style="text-align:center">合并</td>
+<td style="text-align:center">忽略</td>
+<td style="text-align:center">不允许</td>
+</tr>
+<tr>
+<td style="text-align:center">pre</td>
+<td style="text-align:center">保留</td>
+<td style="text-align:center">保留</td>
+<td style="text-align:center">不允许</td>
+</tr>
+<tr>
+<td style="text-align:center">pre-wrap</td>
+<td style="text-align:center">保留</td>
+<td style="text-align:center">保留</td>
+<td style="text-align:center">允许</td>
+</tr>
+<tr>
+<td style="text-align:center">pre-line</td>
+<td style="text-align:center">合并</td>
+<td style="text-align:center">保留</td>
+<td style="text-align:center">允许</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-元素的排版"><a class="markdownIt-Anchor" href="#4-元素的排版"></a> 4. 元素的排版</h2>
+<ul>
+<li>块级元素：块级元素的盒模型，内容区+padding+border+margin才是其在浏览器真正占据的区域。
+<ol>
+<li>块级元素默认情况下如果没有任何内容(空div，或者空div中嵌套中空div)则其width、height、padding、border、margin全是0，在浏览器不占据任何空间。但是一旦其有内容，则其默认width为其父元素的width，其余属性为0，height也是子元素充斥的height。</li>
+<li>水平方向：margin-left、margin-right、width是可以设置为auto，但当某个值设置为auto就意味着该值会自动适应来让整个水平方向的占据宽度outerWidth为其父元素的width。如<code>&lt;div style=&quot;width: 400px;&quot;&gt;&lt;div style=&quot;width: 100px; margin: auto 0 100px 0;&quot;&gt;this is a test&lt;/div&gt;&lt;/div&gt;</code>，这个时候浏览器会自动将其margin-left替换成200px。若所有值设置都是非auto，但是其值算下来不等于父元素的width，则此时浏览器会强制将margin-right设置为auto以适应。</li>
+<li>块级元素水平居中：<strong>若width设置为固定值</strong>，margin为auto，则这两个会保持相等值，这样就很自然实现了块级元素的水平居中效果。<strong>若width宽度值不固定</strong>，即由内容决定的子元素宽度，则可以通过将父元素设置<code>.parent { display: inline-block; text-align: center; }</code>来实现。</li>
+<li>垂直方向：垂直方向设置auto并不会实现垂直居中，而是会设置为0，且垂直方向若子元素高度大于了父元素，其效果和父元素的overflow有关。</li>
+<li>合并外边距：垂直方向的外边距会造成相邻外边距的合并，这不仅仅发生在相邻元素之间的margin-top与margin-bottom，还发生于父元素在没有设置边框和内边距属性（或者设置为0）时，使得父元素的margin-bottom直接和父元素的最后一个元素的margin-bottom接触时二者的合并。</li>
+</ol>
+</li>
+<li>行内元素：行内元素远比我们想象的复杂，因为它们首先是以行为单位去显示的，以里面的文本或其他内容来作为内容，而不是像块级元素生成矩形框体占据一定空间。行内元素的每一行都根据其内容确定行框，而行框由里面的每个内容的行内框确定（所有行内框的最高点和最低点确定最后的行框）。
+<ol>
+<li>非替换元素：非替换元素的行内框不受其margin、padding影响，只和其font-size和line-height有关。但是还是会影响其布局，尤其是当设置背景颜色的时候。</li>
+<li>替换元素：替换元素的行内框和其margin、padding、width、height都有关系，根据其盒模型占据的位置来确定其行内框</li>
+<li>inline-block：和替换元素一样。</li>
+</ol>
+</li>
+<li>IE盒模型：ie6的盒模型是width、height分别表示其内容区、padding区、border区三个部分的值，但是标准盒模型width、height仅仅表示内容区的宽高。</li>
+<li>margin、padding：设置为百分数时是相对当前元素的父元素的<strong>width</strong>的百分比，和height没有关系，和当前元素的其他值没有关系。</li>
+<li>color: 元素的前景色，是有继承性的。</li>
+<li>background：元素的背景设置，不带继承性的。是以下分开属性的合起来写的值，每个值都可以省略，省略后就是默认值，可以采取任何顺序。</li>
+<li>background-color: 元素的背景色默认值是transparent，所以当元素没有背景色时会显示到其父元素的背景色或者依次往上层级显示。</li>
+<li>background-image: 背景图片默认值是none，也可以指定一个uri，如<code>background-image: url(bg23.gif);</code>，默认从元素的padding区域+content区域所组成的矩形的左上角开始放置，不会和border有所冲突。</li>
+<li>background-repeat: 背景元素的重复性设置，默认是repeat，表示会依次重复，还可以设置的值有repeat-x、repeat-y和no-repeat。</li>
+<li>background-position: 背景元素的定位属性，可以设置百分数，像素值，关键字（top、left、right、bottom）。注意，定位是相对元素的区域去定位的，而非图片，但是比较有意思的是如果设置50%时，会将图像中心和元素中心对齐。著名的css-spirits就是利用这个属性来实现小图合并后，在有限的区域里定位到对应的背景，如果目标图片在雪碧图的定位坐标是(100,200)，则应该设置<code>background-position: -100px -100px;</code>。</li>
+<li>background-attachment: 设置元素的背景随着元素定位还是随着文档滚动，默认是前者，值为scroll，还可以设置为fixed。</li>
+<li>浮动定位：浮动定位本身的行为复杂性很高，真的不推荐使用。。。</li>
+<li>定位：position属性可以设置为static（默认值）、relative（相对定位，其位置正常情况下和之前保持一样，left、top的值均为相对之前位置的偏移量）、absolute（绝对定位，元素框会从文档流删除，其相对定位元素为其往上找祖先元素中第一个position不是static的元素），fixed（固定定位，元素框也会从文档删除，其相对定位为视窗本身，这和相对body是有区别的，因为前者在滚动的时候也会出现在视窗，后者可能不会）。
+<ol>
+<li>对于没有相对定位元素，没有设置width和height时，其大小默认是其内容，这个和正常定位的元素一样，但是若设置了top、right、bottom、left的值之后则会相应的形成一个大小，这个大小才是其真正的大小，且都是相对于其定位元素的内边距。若本身设置了width、height，则在同时有top、bottom的情况下忽略bottom、同理忽略right。</li>
+<li>absolute定位的元素，不设置任何值时，默认定位位置是其原本在文档流的位置，只是由于脱离正常文档流，所以其下面的元素会占用它之前的位置而被其遮挡。</li>
+</ol>
+</li>
+<li>min/max-width/height: 可以用width和height的元素，即替换元素和所有块级元素。</li>
+<li>visibility: 控制元素的可见性，注意其不会造成元素和文档流里删除，且该属性有遗传性，所以才会造成设置元素visibility为hidden之后，其后代元素也会消失不见。依次，可以单独设置其某个后代元素的visibility为visible，则该后代元素则会显示出来。</li>
+<li>z-index: 只能应用于定位元素，用于改变元素相互覆盖的顺序，一般的，若没有设置为auto，会和其相对定位的元素保持一致，值越大的会显示在上层，若相同的层级则以其出现的顺序，后面的会覆盖前面的元素。</li>
+</ul>
+<h2 id="5-表布局和列表布局以及一些需要掌握的属性"><a class="markdownIt-Anchor" href="#5-表布局和列表布局以及一些需要掌握的属性"></a> 5. 表布局和列表布局以及一些需要掌握的属性</h2>
+<p>table表是一个复杂且跳不过去的东西，自己写一个table表总会感觉需要考虑太多…</p>
+<ul>
+<li>border-collapse: 初始值为separate，是分隔框模型，此时每个td之间会有一个间隙受border-spacing控制，一般我们还是希望另一个值collapse，即没有分隔的。</li>
+<li>table-layout: 可以设置auto（自动布局）和fixed（固定布局），二者的差别是fixed会让浏览器渲染更快，因为它确定列表的每列宽度是由表的第一行定义，后面的单元格指定的都会被忽略。</li>
+<li>list-style: 是三个属性list-style-type、list-style-image、list-style-position的合写，用于列表的一些设置</li>
+<li>outline: 是outline-style、outline-width、outline-color三个属性的合写。和border不同的是它不会触发布局的改变，因为它只是显示在那，遮挡其他元素都可以而不是触发元素在布局中的位置。</li>
+</ul>
+</div><div class="post-categories"><span><a href="/categories/CSS/" class="category">CSS</a></span></div><div class="tags"><a href="/tags/基础知识/">基础知识</a><a href="/tags/CSS/">CSS</a></div><div class="post-nav"><a href="/2018/07/19/ES6学习笔记/" class="next">ES6学习笔记</a></div><div id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zODA2MS8xNDU5MQ=="></div></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-html-元素的认识"><span class="toc-text"> 0. HTML 元素的认识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-css-如何作用于网页"><span class="toc-text"> 1. css 如何作用于网页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-css-选择器以及作用规则"><span class="toc-text"> 2. css 选择器以及作用规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-字体属性和文本属性"><span class="toc-text"> 3. 字体属性和文本属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-元素的排版"><span class="toc-text"> 4. 元素的排版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-表布局和列表布局以及一些需要掌握的属性"><span class="toc-text"> 5. 表布局和列表布局以及一些需要掌握的属性</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/23/css基础知识/">css基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/ES6学习笔记/">ES6学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/再读犀牛书：JavaScript的基础知识集锦/">再读犀牛书：JavaScript的基础知识集锦</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">2</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/基础知识/" style="font-size: 15px;">基础知识</a> <a href="/tags/进阶知识/" style="font-size: 15px;">进阶知识</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li></ul></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">邓先雨(Dengxy).</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script><script>(function(d, s) {
+  var j, e = d.getElementsByTagName('body')[0];
+  if (typeof LivereTower === 'function') { return; }
+  j = d.createElement(s);
+  j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  j.async = true;
+  e.appendChild(j);
+})(document, 'script');
+</script></body></html>
