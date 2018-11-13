@@ -4,6 +4,37 @@
 
     
   <url>
+    <loc>https://dengxianyu.gitee.io/2018/11/09/webpack4%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2018-11-13T05:28:48.323Z</lastmod>
+    <data>
+        <display>
+        <title>webpack4进阶学习</title>
+        <pubTime>2018-11-09T06:39:13.000Z</pubTime>
+        
+        <tag>进阶知识</tag>
+         
+        <tag>webpack</tag>
+         
+        <tag>webpack4</tag>
+         
+         
+           
+             
+              <breadCrumb title="webpack" url="https://dengxianyu.gitee.io/categories/webpack/"/>
+          
+             
+              <breadCrumb title="webpack4" url="https://dengxianyu.gitee.io/categories/webpack/webpack4/"/>
+          
+             
+              <breadCrumb title="工具" url="https://dengxianyu.gitee.io/categories/webpack/webpack4/%E5%B7%A5%E5%85%B7/"/>
+          
+             
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://dengxianyu.gitee.io/2018/06/14/%E5%86%8D%E8%AF%BB%E7%8A%80%E7%89%9B%E4%B9%A6%EF%BC%9AJavaScript%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E9%9B%86%E9%94%A6/</loc>
     <lastmod>2018-11-09T03:57:14.939Z</lastmod>
     <data>
@@ -36,9 +67,9 @@
         <title>css基础知识</title>
         <pubTime>2018-08-23T11:59:52.000Z</pubTime>
         
-        <tag>基础知识</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>基础知识</tag>
          
          
            
