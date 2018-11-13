@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://dengxianyu.gitee.io/2018/11/09/webpack4%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://dengxianyu.gitee.io/2018/08/23/css%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
     
-    <lastmod>2018-11-13T05:31:33.942Z</lastmod>
+    <lastmod>2018-11-13T05:33:56.977Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dengxianyu.gitee.io/2018/07/19/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2018-11-13T05:33:48.658Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://dengxianyu.gitee.io/2018/06/14/%E5%86%8D%E8%AF%BB%E7%8A%80%E7%89%9B%E4%B9%A6%EF%BC%9AJavaScript%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E9%9B%86%E9%94%A6/</loc>
     
-    <lastmod>2018-11-09T03:57:14.939Z</lastmod>
+    <lastmod>2018-11-13T05:33:42.282Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dengxianyu.gitee.io/2018/11/09/webpack4%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2018-11-13T05:33:38.900Z</lastmod>
     
   </url>
   
@@ -33,20 +47,6 @@
     <loc>https://dengxianyu.gitee.io/about/index.html</loc>
     
     <lastmod>2018-11-08T11:56:23.696Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dengxianyu.gitee.io/2018/08/23/css%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
-    
-    <lastmod>2018-11-08T11:56:23.691Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dengxianyu.gitee.io/2018/07/19/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    
-    <lastmod>2018-11-08T11:56:23.690Z</lastmod>
     
   </url>
   
