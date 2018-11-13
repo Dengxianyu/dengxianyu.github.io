@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://dengxianyu.gitee.io/2018/11/09/webpack4%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2018-11-13T05:28:48.323Z</lastmod>
+    <lastmod>2018-11-13T05:31:33.942Z</lastmod>
     <data>
         <display>
         <title>webpack4进阶学习</title>
@@ -20,15 +20,14 @@
          
            
              
-              <breadCrumb title="webpack" url="https://dengxianyu.gitee.io/categories/webpack/"/>
+              <breadCrumb title="webpack4" url="https://dengxianyu.gitee.io/categories/webpack4/"/>
           
              
-              <breadCrumb title="webpack4" url="https://dengxianyu.gitee.io/categories/webpack/webpack4/"/>
+              <breadCrumb title="工具" url="https://dengxianyu.gitee.io/categories/webpack4/%E5%B7%A5%E5%85%B7/"/>
           
              
-              <breadCrumb title="工具" url="https://dengxianyu.gitee.io/categories/webpack/webpack4/%E5%B7%A5%E5%85%B7/"/>
+              <breadCrumb title="工程化" url="https://dengxianyu.gitee.io/categories/webpack4/%E5%B7%A5%E5%85%B7/%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
           
-             
         </display>
     </data>
     </url>
@@ -42,9 +41,9 @@
         <title>再读犀牛书：JavaScript的基础知识集锦</title>
         <pubTime>2018-06-14T09:30:11.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>基础知识</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
